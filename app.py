@@ -1,12 +1,7 @@
-import os
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
-
 import pandas as pd
 import numpy as np
 import tensorflow as tf
 import streamlit as st
-
-TF_ENABLE_ONEDNN_OPTS = 0
 
 st.title(":pill: Individual medical costs billed by health insurance :pill:")
 
@@ -49,8 +44,6 @@ def calculate(age, sex, bmi, children, smoker, region):
         "children":[children],
         "smoker":[smoker],
         "region":[region]}
-    
-    print(type(bmi))
 
     for key in data.keys():
         if type(data[key][0]) == str:
