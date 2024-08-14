@@ -3,8 +3,6 @@ os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 import pandas as pd
 import numpy as np
-from sklearn.compose import make_column_transformer
-from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
 import tensorflow as tf
 import streamlit as st
 
@@ -63,9 +61,9 @@ def calculate(age, sex, bmi, children, smoker, region):
     insurance = pd.read_csv("insurance.csv")
     X = insurance.drop("charges", axis=1)
             
-    ct = make_column_transformer(
-        (MinMaxScaler(), ["age", "bmi", "children"]),
-        (OneHotEncoder(handle_unknown="ignore"), ["sex", "smoker", "region"])
+    ct = sklearn.compose.make_column_transformer(
+        (sklearn.preprocessing.MinMaxScaler(), ["age", "bmi", "children"]),
+        (sklearn.preprocessing.OneHotEncoder(handle_unknown="ignore"), ["sex", "smoker", "region"])
     )
 
     ct.fit(insurance)
